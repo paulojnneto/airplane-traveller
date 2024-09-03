@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dyl7e6w7ylpda" path="res://Assets/Obstacle.png" id="1_opn0m"]
 
-[node name="Obstacle" type="Area2D"]
+[node name="Obstacle" type="Area2D" groups=["DynamicObject"]]
 scale = Vector2(1.5, 1.5)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
