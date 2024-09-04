@@ -33,11 +33,11 @@ func _on_spawner_timer_timeout():
 	
 	if random == 0:
 		obstacle_instance.position.y = 200;
-		last_obstacle_position = "up"
+		last_obstacle_position = "up";
 	else:
 		obstacle_instance.position.y = 800;
 		obstacle_instance.scale.y *= -1;
-		last_obstacle_position = "down"
+		last_obstacle_position = "down";
 
 
 func _on_coin_timer_timeout():
@@ -46,11 +46,17 @@ func _on_coin_timer_timeout():
 	if last_obstacle_position == "up" && random_position <= 460:
 		return;
 	if last_obstacle_position == "down" && random_position >= 500:
-		return
+		return;
 	add_child(coin_instance);
-	coin_instance.position.x = spawned_object_position_x
+	coin_instance.position.x = spawned_object_position_x;
 	coin_instance.position.y = random_position;
-	coin_instance.body_entered.connect(_on_coin_collided.bind(coin_instance))
+	coin_instance.body_entered.connect(_on_coin_collided.bind(coin_instance));
 
-func _on_coin_collided(body : Node2D) -> void:
-	pass
+func _on_coin_collided(body : Node2D, coin_instance : Area2D) -> void:
+	if body.is_in_group("Player"):
+		score += 5;
+		health += 10;
+		coin_instance.queue_free();
+	
+	if health > 100:
+		health = 100;

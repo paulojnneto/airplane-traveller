@@ -46,12 +46,13 @@ texture = ExtResource("1_kms41")
 position = Vector2(1200, 0)
 texture = ExtResource("1_kms41")
 
-[node name="Player" type="RigidBody2D" parent="."]
+[node name="Player" type="RigidBody2D" parent="." groups=["Player"]]
 position = Vector2(180, 480)
 scale = Vector2(0.800191, 0.800191)
 mass = 2.2
 gravity_scale = 1.6
 continuous_cd = 1
+max_contacts_reported = 10
 script = ExtResource("4_80lwt")
 
 [node name="Sprite2D" type="Sprite2D" parent="Player"]
