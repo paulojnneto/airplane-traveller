@@ -61,13 +61,15 @@ func _on_coin_timer_timeout():
 
 func _on_coin_collided(body : Node2D, coin_instance : Area2D) -> void:
 	if body.is_in_group("Player"):
+		$Player/CoinCollected.play();
 		score += 5;
 		health += 10;
-		coin_instance.queue_free();
-	
+		coin_instance.get_node("AnimationPlayer").play("coin_collected")
+
 	if health > 100:
 		health = 100;
 
 func game_over() -> void:
+	$Player/GameOver.play();
 	$GameOver.show();
 	get_tree().paused = true;
